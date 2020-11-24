@@ -2,7 +2,7 @@
 
 namespace OOPEksamen
 {
-    class Transaction
+    public abstract class Transaction
     {
         public Transaction(int iD, User user, DateTime date, decimal amount)
         {
@@ -18,7 +18,7 @@ namespace OOPEksamen
         public decimal Amount { get; set; }
 
 
-        public void Execute()
+        public abstract void Execute()
         {
 
         }

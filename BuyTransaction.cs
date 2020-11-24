@@ -1,6 +1,6 @@
 ﻿namespace OOPEksamen
 {
-    class BuyTransaction
+    class BuyTransaction : Transaction 
     {
 
     }

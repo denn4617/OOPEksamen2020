@@ -1,6 +1,6 @@
 ﻿namespace OOPEksamen
 {
-    class InsertCashTransaction
+    class InsertCashTransaction : Transaction
     {
 
     }
