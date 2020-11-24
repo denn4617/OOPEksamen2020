@@ -32,7 +32,7 @@ namespace OOPEksamen
             }
             // TODO: Disse to lines skal slettes (bruges kun for test / udskriver alle produkt objekter)
             userListObj.ForEach(i => Console.WriteLine(i));
-            Console.WriteLine(userListObj[2].Firstname);
+            
         }
 
         private void CsvProductReader(string csvPath)
@@ -61,7 +61,7 @@ namespace OOPEksamen
             Console.WriteLine(productListObj[5].Price);
         }
         
-        // TODO: Ændre i Norspangs kode og optimer(hvis muligt), så det ikke er copy/paste :)
+        // TODO: Ændre i Norspangs kode og optimer(hvis muligt) :)
         private string DiscardHTMLTags(string productName)
         {
             bool isHTMLtag = false;

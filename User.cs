@@ -5,73 +5,41 @@ namespace OOPEksamen
 {
     class User
     {
-        private int _ID;
-        private string _Firstname;
-        private string _Lastname;
+        private int ID { get; set; }
+        private string Firstname { get; set; }
+        private string Lastname { get; set; }
         public string Username { get; set; }
-        private string _Email;
-        private decimal _Balance;
+        private string Email { get; set; }
+        private decimal Balance { get; set; }
+
+
         
         //User constructer
         public User(int iD, string firstname, string lastname, string username, string email, decimal balance)
         {
+            if (IsValidEmail(email))
+                Email = email;
+            else
+                throw new ArgumentException("You must enter a valid email address");
             ID = iD;
-            Firstname = firstname;
-            Lastname = lastname;
+            Firstname = firstname ?? throw new ArgumentNullException(nameof(firstname));
+            Lastname = lastname ?? throw new ArgumentNullException(nameof(lastname));
             Username = username;
             Email = email;
             Balance = balance;
         }
-
-        public int ID
-        {
-            get { return _ID; }
-            set { _ID = value; }
-        }
-
-        public string Firstname
-        {
-            get { return _Firstname; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentNullException("Your firstname must be declared");
-
-                _Firstname = value;
-            }
-        }
-        public string Lastname
-        {
-            get { return _Lastname; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentNullException("Your lastname must be declared");
-
-                _Lastname = value;
-            }
-        }
-
-        public string Email
-        {
-            get { return _Email; }
-            set
-            {
-                _Email = value;
-
-                if (IsValidEmail(_Email))
-                    _Email = value;
-                else
-                    throw new ArgumentException("You must enter a valid email adress");
-            }
-        }
-        
+  
         private bool IsValidEmail(string email)
         {
-            string[] arrEmailSplit = email.Split('@');
+            if (!email.Contains('@'))
+                return false;
 
-            string localpart = arrEmailSplit[0];
-            string domain = arrEmailSplit[1];
+            int indexOfAt = email.IndexOf('@');
+
+            string[] arrEmailSplit = email.Split();
+
+            string localpart = email.Substring(0, indexOfAt);
+            string domain = email.Substring(indexOfAt + 1);
 
             // Validation criteria for the localpart in email
             bool localpartValidation = Regex.IsMatch(localpart, "^[A-Za-z0-9_.-]*$");
@@ -88,13 +56,7 @@ namespace OOPEksamen
                 return false;
         }
 
-        public decimal Balance
-        {
-            get { return _Balance; }
-            set { _Balance = value; }
-        }
-
-        // Generated overrides
+        #region GeneratedOverrides
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
@@ -109,6 +71,7 @@ namespace OOPEksamen
         {
             return ($"{Firstname} {Lastname} ({Email})");
         }
+        #endregion
 
     }
 
