@@ -28,6 +28,5 @@ namespace OOPEksamen
                    $"Amount: {TransactionAmount}" +
                    $"Transaction date: {TransactionDate}";
         }
-
     }
 }

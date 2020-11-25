@@ -21,8 +21,6 @@ namespace OOPEksamen
             CanBeBoughtOnCredit = canBeBoughtOnCredit;
         }
 
-        
-
         public override string ToString()
         {
             return $"{ID} - {Name} - {Price}";

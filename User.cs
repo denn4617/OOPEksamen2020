@@ -5,7 +5,7 @@ namespace OOPEksamen
 {
     public class User
     {
-        private int ID { get; set; }
+        private int UserID { get; set; }
         private string Firstname { get; set; }
         private string Lastname { get; set; }
         public string Username { get; set; }
@@ -15,7 +15,7 @@ namespace OOPEksamen
 
         
         //User constructer
-        public User(int iD, string firstname, string lastname, string username, string email, decimal balance)
+        public User(int userID, string firstname, string lastname, string username, string email, decimal balance)
         {
             if (!IsValidUsername(username))
                 throw new ArgumentException("dumme ko"); /*NotValidUsernameException()*/
@@ -23,7 +23,7 @@ namespace OOPEksamen
                 throw new ArgumentException("You must enter a valid email address");/*NotValidEmailException()*/
 
 
-            ID = iD;
+            UserID = userID;
             Firstname = firstname ?? throw new ArgumentNullException(nameof(firstname));
             Lastname = lastname ?? throw new ArgumentNullException(nameof(lastname));
             Username = username;
@@ -71,12 +71,15 @@ namespace OOPEksamen
         #region Generated overrides
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            if (UserID == ((User)obj).UserID)
+                return true;
+            else
+                return false;
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return UserID.GetHashCode();
         }
 
         public override string ToString()

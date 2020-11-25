@@ -7,7 +7,7 @@ namespace OOPEksamen
         public Product Product { get; }
         public int ProductAmount { get; }
         public BuyTransaction(int transactionID, User user, Product product) 
-            : base(transactionID, user, product.Price)
+            : base(transactionID, user, -product.Price)
         {
             Product = product;
             ProductAmount = 1;
@@ -15,7 +15,7 @@ namespace OOPEksamen
 
         // Multibuy constructer
         public BuyTransaction(int transactionID, User user, Product product, int productAmount) 
-            : base(transactionID, user, product.Price * productAmount)
+            : base(transactionID, user, -product.Price * productAmount)
         {
             Product = product;
             ProductAmount = productAmount;
@@ -24,7 +24,7 @@ namespace OOPEksamen
         public override void Execute()
         {
             if (User.Balance >= -TransactionAmount || Product.CanBeBoughtOnCredit)
-                base.Execute();
+                User.Balance += TransactionAmount;
             else
                 throw new InsufficientCreditsException(User, Product);
         }
