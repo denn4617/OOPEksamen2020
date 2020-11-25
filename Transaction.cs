@@ -4,7 +4,6 @@ namespace OOPEksamen
 {
     public abstract class Transaction
     {
-        private int IDCounter = 0;
         public int TransactionID { get; set; }
         public User User { get; set; }
         public DateTime TransactionDate { get; set; }
@@ -12,14 +11,16 @@ namespace OOPEksamen
 
 
         // TODO: Spørg Norspang
-        public Transaction(User user, decimal amount)
+        public Transaction(int transactionID, User user, decimal transactionAmount)
         {
-            TransactionID = IDCounter;
+            TransactionID = transactionID;
             User = user ?? throw new ArgumentNullException(nameof(user));
             TransactionDate = DateTime.Now;
-            TransactionAmount = amount;
-
-            IDCounter++;
+            TransactionAmount = transactionAmount;
+        }
+        public virtual void Execute()
+        {
+            User.Balance += TransactionAmount;
         }
 
         public override string ToString()
@@ -30,10 +31,5 @@ namespace OOPEksamen
                    $"Transaction date: {TransactionDate}";
         }
 
-
-        //public abstract void Execute()
-        //{
-
-        //}
     }
 }

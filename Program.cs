@@ -7,7 +7,7 @@ namespace OOPEksamen
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
+            
             //User user1 = new User("qq", 01, "dunnis", "kuluc", "dunni12@hotmail5aau.dk", 8.45321m);
             ////Product product1 = new Product("", 10, true, true);
             //DateTime idag = new DateTime(2020, 11, 21);
@@ -17,6 +17,8 @@ namespace OOPEksamen
 
             //Stregsystem.CsvProductReader();
             _ = new Stregsystem();
+
+            
 
 
         }

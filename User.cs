@@ -10,7 +10,7 @@ namespace OOPEksamen
         private string Lastname { get; set; }
         public string Username { get; set; }
         private string Email { get; set; }
-        private decimal Balance { get; set; }
+        public decimal Balance { get; set; }
 
 
         
