@@ -18,10 +18,8 @@ namespace OOPEksamen
             TransactionDate = DateTime.Now;
             TransactionAmount = transactionAmount;
         }
-        public virtual void Execute()
-        {
-            User.Balance += TransactionAmount;
-        }
+
+        public abstract void Execute();
 
         public override string ToString()
         {

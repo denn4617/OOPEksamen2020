@@ -12,7 +12,7 @@ namespace OOPEksamen
         public IEnumerable<Product> ActiveProducts => ProductListObj.Where(product => product.Active);
         List<Transaction> Transactions = new List<Transaction>();
         
-
+        // TODO: Måske lave en class, der håndterer alt indlæsning af CSV filer
         private void CsvUserReader(string csvPath)
         {
             StreamReader userCSV = new StreamReader(csvPath);
@@ -41,10 +41,8 @@ namespace OOPEksamen
         {
             StreamReader productCSV = new StreamReader(csvPath);
 
-           
             string line, firstLine = productCSV.ReadLine();
             List<string> productListString;
-
 
             while ((line = productCSV.ReadLine()) != null)
             {
@@ -88,7 +86,6 @@ namespace OOPEksamen
                     }
                 }
             }
-
             return productName;
         }
 

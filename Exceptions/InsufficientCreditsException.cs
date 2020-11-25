@@ -5,10 +5,7 @@ namespace OOPEksamen
 {
     [Serializable]
     internal class InsufficientCreditsException : Exception
-    {
-        private User user;
-        private Product product;
-
+    { 
         public InsufficientCreditsException()
         {
         }
