@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace OOPEksamen
 {
-    class User
+    public class User
     {
         private int ID { get; set; }
         private string Firstname { get; set; }
@@ -17,16 +17,28 @@ namespace OOPEksamen
         //User constructer
         public User(int iD, string firstname, string lastname, string username, string email, decimal balance)
         {
-            if (IsValidEmail(email))
-                Email = email;
-            else
-                throw new ArgumentException("You must enter a valid email address");
+            if (!IsValidUsername(username))
+                throw new ArgumentException("dumme ko"); /*NotValidUsernameException()*/
+            if (!IsValidEmail(email))
+                throw new ArgumentException("You must enter a valid email address");/*NotValidEmailException()*/
+
+
             ID = iD;
             Firstname = firstname ?? throw new ArgumentNullException(nameof(firstname));
             Lastname = lastname ?? throw new ArgumentNullException(nameof(lastname));
             Username = username;
             Email = email;
             Balance = balance;
+        }
+        
+
+        public bool IsValidUsername(string username)
+        {
+            bool usernameValidation = Regex.IsMatch(username, "^[a-z0-9_]*$");
+            if (usernameValidation)
+                return true;
+            else
+                return false;
         }
   
         private bool IsValidEmail(string email)
@@ -56,7 +68,7 @@ namespace OOPEksamen
                 return false;
         }
 
-        #region GeneratedOverrides
+        #region Generated overrides
         public override bool Equals(object obj)
         {
             return base.Equals(obj);

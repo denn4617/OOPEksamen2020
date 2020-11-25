@@ -4,23 +4,36 @@ namespace OOPEksamen
 {
     public abstract class Transaction
     {
-        public Transaction(int iD, User user, DateTime date, decimal amount)
+        private int IDCounter = 0;
+        public int TransactionID { get; set; }
+        public User User { get; set; }
+        public DateTime TransactionDate { get; set; }
+        public decimal TransactionAmount { get; set; }
+
+
+        // TODO: Spørg Norspang
+        public Transaction(User user, decimal amount)
         {
-            ID = iD;
-            this.user = user;
-            Date = date;
-            Amount = amount;
+            TransactionID = IDCounter;
+            User = user ?? throw new ArgumentNullException(nameof(user));
+            TransactionDate = DateTime.Now;
+            TransactionAmount = amount;
+
+            IDCounter++;
         }
 
-        public int ID { get; set; }
-        public User user { get; set; }
-        public DateTime Date { get; set; }
-        public decimal Amount { get; set; }
-
-
-        public abstract void Execute()
+        public override string ToString()
         {
-
+            return $"Transaction ID: {TransactionID}" +
+                   $"User: {User}" +
+                   $"Amount: {TransactionAmount}" +
+                   $"Transaction date: {TransactionDate}";
         }
+
+
+        //public abstract void Execute()
+        //{
+
+        //}
     }
 }

@@ -13,6 +13,9 @@ namespace OOPEksamen
         {
             SeasonStartDate = seasonStartDate;
             SeasonEndDate = seasonEndDate;
+
+            if (seasonStartDate <= DateTime.Now && seasonEndDate >= DateTime.Now && active)
+                Active = true;
         }
 
     }

@@ -7,8 +7,10 @@ namespace OOPEksamen
 {
     class Stregsystem
     {
-        private List<User> userListObj { get; } = new List<User>();
-        private List<Product> productListObj { get; } = new List<Product>();
+        private List<User> UserListObj { get; } = new List<User>();
+        private List<Product> ProductListObj { get; } = new List<Product>();
+        public IEnumerable<Product> ActiveProducts => ProductListObj.Where(product => product.Active);
+        List<Transaction> Transactions = new List<Transaction>();
         
 
         private void CsvUserReader(string csvPath)
@@ -28,10 +30,10 @@ namespace OOPEksamen
                 decimal userBalance = Convert.ToDecimal(userListString[4]);
                 string userEmail = userListString[5];
                 User user = new User(userID, userFirstname, userLastname, userUsername, userEmail, userBalance);
-                userListObj.Add(user);
+                UserListObj.Add(user);
             }
             // TODO: Disse to lines skal slettes (bruges kun for test / udskriver alle produkt objekter)
-            userListObj.ForEach(i => Console.WriteLine(i));
+            UserListObj.ForEach(i => Console.WriteLine(i));
             
         }
 
@@ -54,11 +56,11 @@ namespace OOPEksamen
                 bool productIsActive = (productListString[3] == "1");
 
                 Product product = new Product(productID, productName, productPrice, productIsActive, false);
-                productListObj.Add(product);
+                ProductListObj.Add(product);
             }
             // TODO: Disse to lines skal slettes (bruges kun for test / udskriver alle produkt objekter)
-            productListObj.ForEach(i => Console.WriteLine(i));
-            Console.WriteLine(productListObj[5].Price);
+            ProductListObj.ForEach(i => Console.WriteLine(i));
+            Console.WriteLine(ProductListObj[5].Price);
         }
         
         // TODO: Ændre i Norspangs kode og optimer(hvis muligt) :)
