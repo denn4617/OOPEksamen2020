@@ -8,8 +8,8 @@ namespace OOPEksamen
         public DateTime SeasonStartDate { get; set; }
         public DateTime SeasonEndDate { get; set; }
 
-        public SeasonalProduct(string name, decimal price, bool active, bool canBeBoughtOnCredit,
-               DateTime seasonEndDate) : base(name, price, active, canBeBoughtOnCredit)
+        public SeasonalProduct(int productID, string name, decimal price, bool active, bool canBeBoughtOnCredit,
+               DateTime seasonEndDate) : base(productID, name, price, active, canBeBoughtOnCredit)
         {
             SeasonEndDate = seasonEndDate;
             // FIX DET HER LORT - skal seasonStartDate være en parameter i constructeren?!!
@@ -20,7 +20,7 @@ namespace OOPEksamen
         }
         public override string ToString()
         {
-            return $"{ID}, {Name}, {Price}";
+            return $"{ProductID}, {Name}, {Price}";
         }
 
     }
