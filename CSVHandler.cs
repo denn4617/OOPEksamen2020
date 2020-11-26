@@ -47,9 +47,6 @@ namespace OOPEksamen
                 users.Add(user);
             }
 
-            // TODO: Disse to lines skal slettes (bruges kun for test / udskriver alle produkt objekter)
-            users.ForEach(i => Console.WriteLine(i));
-
             return users;
         }
         public List<Product> CsvProduct(string csvPath)
@@ -62,19 +59,19 @@ namespace OOPEksamen
                 string[] productArr = line.Split(";");
                 
                 int productID = Convert.ToInt32(productArr[0]);
-                string productName = DiscardHTMLTags(productArr[1]);
+                string productName = DiscardHTMLTags(productArr[1]).Trim('"');
                 decimal productPrice = Convert.ToDecimal(productArr[2]);
                 bool productIsActive = (productArr[3] == "1");
-                //DateTime productEndDate = DateTime.Parse(productArr[4].Trim('"'));
+                
 
                 if (productArr[4].Length > 3)
-                    products.Add(new SeasonalProduct(productID, productName, productPrice, productIsActive, false, DateTime.Parse(productArr[4].Trim('"'))));
+                {
+                    DateTime productEndDate = DateTime.Parse(productArr[4].Trim('"'));
+                    products.Add(new SeasonalProduct(productID, productName, productPrice, productIsActive, false, productEndDate));
+                }  
                 else
                     products.Add(new Product(productID, productName, productPrice, productIsActive, false));
             }
-
-            // TODO: Disse to lines skal slettes (bruges kun for test / udskriver alle produkt objekter)
-            products.ForEach(i => Console.WriteLine(i));
 
             return products;
         }

@@ -23,7 +23,7 @@ namespace OOPEksamen
 
         public override string ToString()
         {
-            return $"{ProductID}, {Name}, {Price}";
+            return $"{ProductID}: {Name} - {Price}";
         }
     }
 }

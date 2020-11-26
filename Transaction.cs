@@ -10,7 +10,7 @@ namespace OOPEksamen
         public DateTime TransactionDate { get; set; }
         public decimal TransactionAmount { get; set; }
 
-
+    
         // TODO: Spørg Norspang
         public Transaction(User user, decimal transactionAmount)
         {
@@ -30,6 +30,11 @@ namespace OOPEksamen
                    $"User: {User}\n" +
                    $"Amount: {TransactionAmount}\n" +
                    $"Transaction date: {TransactionDate}\n";
+        }
+
+        public int CompareTo(object obj)
+        {
+            return TransactionDate.CompareTo(((Transaction)obj).TransactionDate);
         }
     }
 }

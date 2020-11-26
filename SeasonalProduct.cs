@@ -20,7 +20,7 @@ namespace OOPEksamen
         }
         public override string ToString()
         {
-            return $"{ProductID}, {Name}, {Price}";
+            return base.ToString();
         }
 
     }
