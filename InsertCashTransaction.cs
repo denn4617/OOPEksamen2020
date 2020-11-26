@@ -2,7 +2,7 @@
 {
     class InsertCashTransaction : Transaction
     {
-        public InsertCashTransaction(int transactionID, User user, decimal transactionAmount) : base(transactionID, user, transactionAmount)
+        public InsertCashTransaction(User user, decimal transactionAmount) : base(user, transactionAmount)
         {
         }
 

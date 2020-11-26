@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace OOPEksamen
 {
-    public class User
+    class User : IComparable
     {
         private int UserID { get; set; }
         private string Firstname { get; set; }
@@ -87,7 +87,11 @@ namespace OOPEksamen
             return ($"{Firstname} {Lastname} ({Email})");
         }
         #endregion
+        public int CompareTo(Object obj)
+        {
+            return UserID.CompareTo(((User)obj).UserID);
 
+        }
     }
 
 }

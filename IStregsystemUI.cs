@@ -1,0 +1,7 @@
+﻿namespace OOPEksamen
+{
+    class IStregsystemUI
+    {
+
+    }
+}

@@ -6,16 +6,16 @@ namespace OOPEksamen
     {
         public Product Product { get; }
         public int ProductAmount { get; }
-        public BuyTransaction(int transactionID, User user, Product product) 
-            : base(transactionID, user, -product.Price)
+        public BuyTransaction(User user, Product product) 
+            : base(user, -product.Price)
         {
             Product = product;
             ProductAmount = 1;
         }
 
         // Multibuy constructer
-        public BuyTransaction(int transactionID, User user, Product product, int productAmount) 
-            : base(transactionID, user, -product.Price * productAmount)
+        public BuyTransaction(User user, Product product, int productAmount) 
+            : base(user, -product.Price * productAmount)
         {
             Product = product;
             ProductAmount = productAmount;
