@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace OOPEksamen
 {
     class StregsystemCommandParser
     {
+        Stregsystem StregSystem { get; set; }
+        IStregsystemUI StregSystemCLI { get; set; }
         public void ParseCommand(string userCommand)
         {
             string[] userCommandArr;
@@ -18,16 +21,16 @@ namespace OOPEksamen
                         if (userCommandArr[1].All(char.IsDigit))
                             BuyItem(userCommandArr[0], int.Parse(userCommandArr[1]));
                         else
-                            stregSystemCLI.DisplayGeneralError("Product number is not a number");
+                            StregSystemCLI.DisplayGeneralError("Product number is not a number");
                         break;
                     case 3:
                         if (userCommandArr[1].All(char.IsDigit) && userCommandArr[2].All(char.IsDigit))
-                            BuyMultipleItems(commandArr);
+                            BuyMultipleItems(userCommandArr);
                         else
-                            stregSystemCLI.DisplayGeneralError("Command was not recognized");
+                            StregSystemCLI.DisplayGeneralError("Command was not recognized");
                         break;
                     default:
-                        stregSystemCLI.DisplayGeneralError("Command was not recognized");
+                        StregSystemCLI.DisplayGeneralError("Command was not recognized");
                         break;
                 }
             }
@@ -42,6 +45,27 @@ namespace OOPEksamen
                     DisplayRelevantUserInfo(userCommand);
                 }
             }
+        }
+
+        // TODO: Lav dise methods
+        private void DisplayRelevantUserInfo(string userCommand)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExecuteAdminCommand(string userCommand)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuyMultipleItems(object commandArr)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuyItem(string v1, int v2)
+        {
+            throw new NotImplementedException();
         }
     }
 }

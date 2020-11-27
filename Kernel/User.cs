@@ -12,16 +12,13 @@ namespace OOPEksamen
         private string Email { get; set; }
         public decimal Balance { get; set; }
 
-
-        
         //User constructer
         public User(int userID, string firstname, string lastname, string username, string email, decimal balance)
         {
             if (!IsValidUsername(username))
-                throw new ArgumentException("dumme ko"); /*NotValidUsernameException()*/
+                throw new ArgumentException("You must enter a valid username"); /*NotValidUsernameException()*/
             if (!IsValidEmail(email))
                 throw new ArgumentException("You must enter a valid email address");/*NotValidEmailException()*/
-
 
             UserID = userID;
             Firstname = firstname ?? throw new ArgumentNullException(nameof(firstname));
@@ -90,7 +87,6 @@ namespace OOPEksamen
         public int CompareTo(Object obj)
         {
             return UserID.CompareTo(((User)obj).UserID);
-
         }
     }
 

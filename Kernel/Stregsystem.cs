@@ -109,8 +109,8 @@ namespace OOPEksamen
         }
         public Stregsystem()
         {
-            products = csvHandler.CsvProduct("../../../products.csv");
-            users = csvHandler.CsvUser("../../../users.csv");
+            products = csvHandler.CsvProduct("Data/products.csv");
+            users = csvHandler.CsvUser("Data/users.csv");
             foreach (var item in ActiveProducts)
             {
                 Console.WriteLine(item);

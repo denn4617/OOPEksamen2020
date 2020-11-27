@@ -105,6 +105,8 @@ namespace OOPEksamen
             Console.WriteLine(errorString);
             ReturnToMenu();
         }
+        
+        // TODO: Forstår denne method fra søren
         public void DisplayUserBuysProduct(BuyTransaction buyTransaction, int amount)
         {
             Console.Clear();
@@ -114,6 +116,17 @@ namespace OOPEksamen
                 Console.WriteLine($"{buyTransaction.User.Username} bought: {buyTransaction.Product.Name} - {buyTransaction.TransactionAmount} kr");
             ReturnToMenu();
         }
+        // TODO: Forstår denne method fra søren
+        public void DisplayUserBuysProducts(List<BuyTransaction> buyTransactions)
+        {
+            Console.Clear();
+            foreach (var item in buyTransactions)
+            {
+                Console.WriteLine(item);
+            }
+            ReturnToMenu();
+        }
+        
         private bool UserBalanceNotification(User user)
         {
             if (user.Balance < 50m)
