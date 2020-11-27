@@ -13,7 +13,6 @@ namespace OOPEksamen
         IEnumerable<Transaction> GetTransactions(User user, int count);
         IEnumerable<User> GetUsers(Func<User, bool> predicate);
         User GetUserByUsername(string username);
-        //HUSK DENNNE
-        //event UserBalanceNotification UserBalanceWarning;
+        
     }
 }

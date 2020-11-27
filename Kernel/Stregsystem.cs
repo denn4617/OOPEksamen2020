@@ -115,8 +115,6 @@ namespace OOPEksamen
             {
                 Console.WriteLine(item);
             }
-            //CSVHandler.CsvProduct("../../../Data/products.csv");
-            //CSVHandler.CsvUser(@"D:\Eksamenopgave - OOP\OOPEksamen\Data\users.csv");
         }
     }
 }
