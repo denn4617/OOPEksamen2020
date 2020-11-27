@@ -55,17 +55,29 @@ namespace OOPEksamen
                 Console.WriteLine(item);
             }
         }
-
-        public void DisplayUserInfo(User user, List<Transaction> transactions)
+        public void DisplayUserInfo(User user)
         {
             Console.Clear();
             Console.WriteLine(user);
-            if (UserBalanceNotification(user))
-                Console.WriteLine($"Your balance: {user.Balance} is running low!");
+
+            if(UserBalanceNotification(user))
+                Console.WriteLine($"Your balance is running low: {user.Balance} kr");
+           
+            ReturnToMenu();
+        }
+
+        public void DisplayUserInfo(User user, IEnumerable<Transaction> transactions)
+        {
+            Console.Clear();
+            Console.WriteLine(user);
+            if(UserBalanceNotification(user))
+                Console.WriteLine($"Your balance is running low: {user.Balance} kr");
+
             foreach (Transaction transaction in transactions)
             {
                 Console.WriteLine(transaction);
             }
+
             ReturnToMenu();
         }
 

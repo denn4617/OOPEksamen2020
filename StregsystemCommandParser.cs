@@ -7,7 +7,7 @@ namespace OOPEksamen
     class StregsystemCommandParser
     {
         Stregsystem StregSystem { get; set; }
-        IStregsystemUI StregSystemCLI { get; set; }
+        IStregsystemUI stregsystemCLI { get; set; }
         public void ParseCommand(string userCommand)
         {
             string[] userCommandArr;
@@ -21,16 +21,16 @@ namespace OOPEksamen
                         if (userCommandArr[1].All(char.IsDigit))
                             BuyItem(userCommandArr[0], int.Parse(userCommandArr[1]));
                         else
-                            StregSystemCLI.DisplayGeneralError("Product number is not a number");
+                            stregsystemCLI.DisplayGeneralError("Product number is not a number");
                         break;
                     case 3:
                         if (userCommandArr[1].All(char.IsDigit) && userCommandArr[2].All(char.IsDigit))
                             BuyMultipleItems(userCommandArr);
                         else
-                            StregSystemCLI.DisplayGeneralError("Command was not recognized");
+                            stregsystemCLI.DisplayGeneralError("Command was not recognized");
                         break;
                     default:
-                        StregSystemCLI.DisplayGeneralError("Command was not recognized");
+                        stregsystemCLI.DisplayGeneralError("Command was not recognized");
                         break;
                 }
             }
@@ -48,9 +48,24 @@ namespace OOPEksamen
         }
 
         // TODO: Lav dise methods
-        private void DisplayRelevantUserInfo(string userCommand)
+        private void DisplayRelevantUserInfo(string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User user = this.StregSystem.GetUserByUsername(username);
+                IEnumerable<Transaction> trans = StregSystem.GetTransactions(user, 10);
+                
+                if (trans.Any())
+                    stregsystemCLI.DisplayUserInfo(user, trans);
+                else
+                    stregsystemCLI.DisplayUserInfo(user);
+
+            }
+            catch (UserDoesNotExistException)
+            {
+
+                stregsystemCLI.DisplayUserNotFound(username);
+            }
         }
 
         private void ExecuteAdminCommand(string userCommand)

@@ -4,7 +4,8 @@ namespace OOPEksamen
     interface IStregsystemUI
     {
         void Start();
-        void DisplayUserInfo(User user, List<Transaction> transactions);
+        void DisplayUserInfo(User user);
+        void DisplayUserInfo(User user, IEnumerable<Transaction> transactions);
         void DisplayUserNotFound(string username); 
         void DisplayProductNotFound(int productID); 
         void DisplayTooManyArgumentsError(string command); 
