@@ -6,9 +6,20 @@ namespace OOPEksamen
     [Serializable]
     internal class UserDoesNotExistException : Exception
     {
-        public UserDoesNotExistException(string username) : base($"User:{username} does not exist!")
+        public UserDoesNotExistException()
         {
         }
 
+        public UserDoesNotExistException(string message) : base(message)
+        {
+        }
+
+        public UserDoesNotExistException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected UserDoesNotExistException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
     }
 }

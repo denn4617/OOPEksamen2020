@@ -5,19 +5,13 @@ namespace OOPEksamen
 {
     [Serializable]
     internal class InsufficientCreditsException : Exception
-    { 
+    {
         public InsufficientCreditsException()
         {
         }
 
         public InsufficientCreditsException(string message) : base(message)
         {
-        }
-
-        public InsufficientCreditsException(User user, Product product) 
-            : base("Due to insufficient funds, the transaction of " + product.Name + " failed for " + user.Username + "." )
-        {
-            
         }
 
         public InsufficientCreditsException(string message, Exception innerException) : base(message, innerException)

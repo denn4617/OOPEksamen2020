@@ -6,13 +6,12 @@ namespace OOPEksamen
 {
     class Stregsystem : IStregsystem
     {
-        CSVHandler csvHandler = new CSVHandler();
-        private List<Product> products;
-        private List<User> users;
+        private List<Product> products = CSVHandler.CsvProduct("products.csv");
+        private List<User> users = CSVHandler.CsvUser("users.csv");
         
-        List<Transaction> TransactionHistory = new List<Transaction>();
+        private List<Transaction> TransactionHistory = new List<Transaction>();
 
-        public IEnumerable<Product> ActiveProducts => products.Where(product => product.Active);
+        
 
         private void ExecuteTransaction(Transaction trans)
         {
@@ -20,7 +19,7 @@ namespace OOPEksamen
             TransactionHistory.Add(trans);
         }
 
-        public InsertCashTransaction AddCreditsToAccount(User user, int amount)
+        public InsertCashTransaction AddCreditsToAccount(User user, decimal amount)
         {
             InsertCashTransaction insertCashTransaction = new InsertCashTransaction(user, amount);
 
@@ -28,6 +27,13 @@ namespace OOPEksamen
             
             return insertCashTransaction;
         }
+        public List<Product> ActiveProducts()
+        {
+            List<Product> ActiveProducts = products.Where(n => n.Active == true).ToList();
+
+            return ActiveProducts;
+        }
+
 
         public BuyTransaction BuyProduct(User user, Product product)
         {
@@ -59,27 +65,26 @@ namespace OOPEksamen
             return product;
         }
 
-        public IEnumerable<Transaction> GetTransactions(User user, int count)
+        public List<Transaction> GetTransactions(User user, int count)
         {
             List<Transaction> allTransactions = TransactionHistory.Where(n => n.User == user).ToList();
 
             allTransactions.Sort();
-            allTransactions.Reverse();
+            //allTransactions.Reverse();
 
             List<Transaction> trans = new List<Transaction>();
 
-            if (allTransactions.Count < count)
-            {
-                foreach (Transaction transaction in allTransactions)
-                {
-                    trans.Add(transaction);
-                }
-            }
-            else
+            if (allTransactions.Count > count)
             {
                 for (int i = 0; i < count; i++)
                 {
                     trans.Add(allTransactions[i]);
+                }   
+            }else
+            {
+                foreach (Transaction transaction in allTransactions)
+                {
+                    trans.Add(transaction);
                 }
             }
 
@@ -100,21 +105,51 @@ namespace OOPEksamen
         }
         public User GetUserByUsername(string username)
         {
-            User user = users.FirstOrDefault(o => o.Username == username);
+            User user = users.FirstOrDefault(n => n.Username == username);
 
             if (user != null)
                 return user;
             else
                 throw new UserDoesNotExistException(username);
         }
-        public Stregsystem()
+
+        public void ActivateProduct(int productID)
         {
-            products = csvHandler.CsvProduct("Data/products.csv");
-            users = csvHandler.CsvUser("Data/users.csv");
-            foreach (var item in ActiveProducts)
-            {
-                Console.WriteLine(item);
-            }
+            int index = products.FindIndex(n => n.ProductID == productID);
+
+            if (index == -1)
+                throw new InvalidProductIdException();
+            else if (products[index].Active == false)
+                products[index].Active = true;
+        }
+        public void DectivateProduct(int productID)
+        {
+            int index = products.FindIndex(n => n.ProductID == productID);
+
+            if (index == -1)
+                throw new InvalidProductIdException();
+            else if (products[index].Active == true)
+                products[index].Active = false;
+        }
+
+        public void ActivateCredit(int productID)
+        {
+            int index = products.FindIndex(n => n.ProductID == productID);
+
+            if (index == -1)
+                throw new InvalidProductIdException();
+            else if (products[index].CanBeBoughtOnCredit == false)
+                products[index].CanBeBoughtOnCredit = true;
+        }
+
+        public void DeactivateCredit(int productID)
+        {
+            int index = products.FindIndex(o => o.ProductID == productID);
+
+            if (index == -1)
+                throw new InvalidProductIdException();
+            else if (products[index].CanBeBoughtOnCredit == true)
+                products[index].CanBeBoughtOnCredit = false;
         }
     }
 }

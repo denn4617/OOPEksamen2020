@@ -7,7 +7,7 @@ namespace OOPEksamen
         private bool SystemRunning = true;
         Stregsystem stregSystem;
 
-        private IEnumerable<Product> ActiveProducts = new List<Product>();
+        private List<Product> ActiveProducts = new List<Product>();
 
         public StregsystemCLI(bool systemRunning, Stregsystem stregSystem)
         {
@@ -17,11 +17,11 @@ namespace OOPEksamen
 
         public void Start()
         {
-            StregsystemCommandParser stregsystemCommandParser = new StregsystemCommandParser();
+            StregsystemController stregsystemCommandParser = new StregsystemController(stregSystem, this);
             string userCommand;
             do
             {
-                ActiveProducts = stregSystem.ActiveProducts;
+                ActiveProducts = stregSystem.ActiveProducts();
                 Console.Clear();
                 PrintMainMenu();
                 Console.WriteLine("\nQuickbuy: ");
@@ -108,7 +108,7 @@ namespace OOPEksamen
         public void DisplayInsufficientCash(User user, Product product)
         {
             Console.Clear();
-            Console.WriteLine($"{user.Username} balance is too low: {user.Balance}kr\n Product price: {product.Price}kr");
+            Console.WriteLine($"Balance is too low!\n{user.Username} balance: {user.Balance}kr\n Product price: {product.Price}kr");
             ReturnToMenu();
         }
         public void DisplayGeneralError(string errorString)
@@ -119,13 +119,11 @@ namespace OOPEksamen
         }
         
         // TODO: Forstår denne method fra søren
-        public void DisplayUserBuysProduct(BuyTransaction buyTransaction, int amount)
+        public void DisplayUserBuysProduct(BuyTransaction buyTransaction)
         {
             Console.Clear();
-            if(amount > 1)
-                Console.WriteLine($"{buyTransaction.User.Username} bought: {buyTransaction.ProductAmount} x {buyTransaction.Product.Name} - {buyTransaction.TransactionAmount} kr");
-            else
-                Console.WriteLine($"{buyTransaction.User.Username} bought: {buyTransaction.Product.Name} - {buyTransaction.TransactionAmount} kr");
+
+            Console.WriteLine($"{buyTransaction.User.Username} bought: {buyTransaction.Product.Name} {buyTransaction.TransactionAmount} kr");
             ReturnToMenu();
         }
         // TODO: Forstår denne method fra søren
@@ -148,7 +146,7 @@ namespace OOPEksamen
         }
         private void ReturnToMenu()
         {
-            Console.WriteLine("Press a key to return to the menu!");
+            Console.WriteLine("\nPress a key to return to the menu!");
             Console.ReadKey();
         }
 

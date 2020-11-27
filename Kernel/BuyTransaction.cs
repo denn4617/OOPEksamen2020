@@ -26,7 +26,7 @@ namespace OOPEksamen
             if (User.Balance >= -TransactionAmount || Product.CanBeBoughtOnCredit)
                 User.Balance += TransactionAmount;
             else
-                throw new InsufficientCreditsException(User, Product);
+                throw new InsufficientCreditsException();
         }
         public override string ToString()
         {

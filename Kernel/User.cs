@@ -81,7 +81,7 @@ namespace OOPEksamen
 
         public override string ToString()
         {
-            return ($"{Firstname} {Lastname} ({Email})");
+            return ($"{Firstname} {Lastname} ({Email}) - Balance: {Balance}");
         }
         #endregion
         public int CompareTo(Object obj)

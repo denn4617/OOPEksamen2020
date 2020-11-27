@@ -8,10 +8,10 @@ namespace OOPEksamen
 {
     // An option could be, to make this class static, since it's a helper class.
     // This would be beneficial, to avoid memory waste
-    class CSVHandler
+    static class CSVHandler
     {
 
-        private List<string> CsvReader(string csvPath)
+        private static List<string> CsvReader(string csvPath)
         {
             StreamReader csvFile = new StreamReader(csvPath);
             List<string> csvLines = new List<string>();
@@ -29,7 +29,7 @@ namespace OOPEksamen
             return csvLines;
         }
 
-        public List<User> CsvUser(string csvPath)
+        public static List<User> CsvUser(string csvPath)
         { 
             List<string> userListString = CsvReader(csvPath);
             List<User> users = new List<User>();
@@ -49,7 +49,7 @@ namespace OOPEksamen
 
             return users;
         }
-        public List<Product> CsvProduct(string csvPath)
+        public static List<Product> CsvProduct(string csvPath)
         {
             List<string> productListString = CsvReader(csvPath);
             List<Product> products = new List<Product>();
@@ -76,7 +76,7 @@ namespace OOPEksamen
             return products;
         }
         
-        private string DiscardHTMLTags(string productName)
+        private static string DiscardHTMLTags(string productName)
         {
             return Regex.Replace(productName, "<.*?>", string.Empty);
         }

@@ -2,7 +2,7 @@
 
 namespace OOPEksamen
 {
-    abstract class Transaction
+    abstract class Transaction : IComparable
     {
         private static int IDCounter =  1;
         public int TransactionID { get; set; }

@@ -10,7 +10,7 @@ namespace OOPEksamen
         void DisplayProductNotFound(int productID); 
         void DisplayTooManyArgumentsError(string command); 
         void DisplayAdminCommandNotFoundMessage(string adminCommand); 
-        void DisplayUserBuysProduct(BuyTransaction transaction, int count);
+        void DisplayUserBuysProduct(BuyTransaction transaction);
         void DisplayUserBuysProducts(List<BuyTransaction> transaction);
         void DisplayInsufficientCash(User user, Product product);
         void DisplayGeneralError(string errorString);
